@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import RoomList from './components/RoomList'
 import * as firebase from 'firebase';
 
-<script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+
 
   // Initialize Firebase
   var config = {
@@ -22,11 +21,8 @@ class App extends Component {
   render() {
     return (
       <div className="chatroom">
-      <RoomList
-      firebase={this.props.firebase()}
-      />
-
-
+      	<RoomList firebase={firebase} />
+      </div>
     );
   }
 }
