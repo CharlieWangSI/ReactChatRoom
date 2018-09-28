@@ -19,11 +19,25 @@ class RoomList extends Component {
 
   }
 
+  creatRoom(){
+    this.roomsRef.push({
+  name: newRoomName
+});
+  }
+
   render(){
     return(
       this.state.rooms.map( room =>
+        <div>
         <div key={room.key}>
         	<h1>{room.name}</h1>
+        </div>
+        <div>
+        <form>
+        <div><input type="text" name="newRoomName"></input></div>
+        <div><button onclick="creatRoom()">submit</button></div>
+        </form>
+        </div>
         </div>
       )
     )
