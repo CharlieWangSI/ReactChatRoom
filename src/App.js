@@ -18,23 +18,6 @@ import * as firebase from 'firebase';
 
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-        newChatRoomName: ''
-    };
-  }
-
-  handleChange(e) {
-     this.setState({ newChatRoomName: e.target.value })
-   }
-
-  handleSubmit(e) {
-     e.preventDefault();
-     if (!this.state.newChatRoomName) { return }
-     this.roomsRef.push({name: this.state.newChatRoomName});
-   }
-
 
   render() {
     return (
@@ -42,10 +25,6 @@ class App extends Component {
       	<RoomList firebase={firebase} />
       </div>
 
-      <form onSubmit={ (e) => this.handleSubmit(e) }>
-          <input type="text" value={ this.state.newChatRoomName } onChange={ (e) => this.handleChange(e) } />
-          <input type="submit" />
-     </form>
     );
   }
 }
