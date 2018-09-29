@@ -34,16 +34,18 @@ class RoomList extends Component {
 
   render(){
     return(
-      this.state.rooms.map( room =>
+      <div>
+      {this.state.rooms.map( room =>
         <div key={room.key}>
         	<h1>{room.name}</h1>
         </div>
-      )
+      )}
 
-      <form onSubmit={ (e) => this.state.handleSubmit(e) }>
-          <input type="text" value={ this.state.newChatRoomName } onChange={ (e) => this.state.handleChange(e) } />
+      <form onSubmit={ (e) => this.handleSubmit(e) }>
+          <input type="text" value={ this.state.newChatRoomName } onChange={ (e) => this.handleChange(e) } />
           <input type="submit" />
      </form>
+     </div>
 
     )
   }
