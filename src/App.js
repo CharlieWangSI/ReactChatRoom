@@ -16,6 +16,7 @@ import * as firebase from 'firebase';
     messagingSenderId: "3749167464"
   };
   firebase.initializeApp(config);
+  console.dir(firebase);
 
 
 class App extends Component {
@@ -30,19 +31,17 @@ class App extends Component {
 
   setActiveRoom(room){
     this.setState({activeRoom:room})
-
-  }
+}
 
   render() {
     return (
       <div className="chatroom">
       	<RoomList firebase={firebase} />
+        <RoomList setActiveRoom={this.setActiveRoom} />
         <MessageList firebase={firebase}/>
-        <div>this.state.activeRoom.name</div>
+        <div>{(this.state.activeRoom==null?"Choose a room":this.state.activeRoom.name)}</div>
       </div>
-
     );
   }
 }
-
 export default App;

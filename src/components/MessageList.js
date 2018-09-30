@@ -17,7 +17,7 @@ class MessageList extends Component {
       const message = snapshot.val();
       message.key = snapshot.key;
       this.setState({ messages: this.state.messages.concat( message ) })
-    });
+    });}
 
     render(){
       return(
@@ -32,6 +32,6 @@ class MessageList extends Component {
       )
     }
   }
-}
+
 
   export default MessageList;

@@ -10,6 +10,9 @@ class RoomList extends Component {
     };
 
     this.roomsRef = this.props.firebase.database().ref('Rooms');
+    console.log("- DEBUG - ");
+    console.dir(this.props.firebase);
+    console.log("- DEBUG - ");
   }
 
   componentDidMount() {
@@ -46,7 +49,6 @@ class RoomList extends Component {
           <input type="submit" />
      </form>
      </div>
-
     )
   }
 }
