@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import RoomList from './components/RoomList'
+import MessageList from './components/MessageList'
 import * as firebase from 'firebase';
 
 
@@ -19,10 +20,25 @@ import * as firebase from 'firebase';
 
 class App extends Component {
 
+  constructor(props) {
+     super(props);
+
+   this.state = {
+     activeRoom: null
+   };
+   }
+
+  setActiveRoom(room){
+    this.setState({activeRoom:room})
+
+  }
+
   render() {
     return (
       <div className="chatroom">
       	<RoomList firebase={firebase} />
+        <MessageList firebase={firebase}/>
+        <div>this.state.activeRoom.name</div>
       </div>
 
     );
