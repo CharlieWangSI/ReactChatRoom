@@ -17,7 +17,7 @@ class User extends Component {
       <div>
       <input type="button" value="signIn" onChange={this.props.firebase.auth().signInWithPopup(provider)}/>
       <input type="button" value="signOut" onChange={this.props.firebase.auth().signOut()}/>
-      <div>{this.props.user.displayName}</div>
+      <div>{this.props.user}</div>
       </div>
     )
   }
