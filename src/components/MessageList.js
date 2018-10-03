@@ -19,14 +19,19 @@ class MessageList extends Component {
       this.setState({ messages: this.state.messages.concat( message ) })
     });}
 
+  displayMessage(message){
+    this.props.activeRoom==null?"See Messages": message.filter(message.roomID == this.props.activeRoom.key).content
+  }
+
     render(){
       return(
         <div>
-        {this.state.messages.map( message =>
+        {this.state.messages.filter(message => message.roomID == this.props.activeRoom.key).map( message =>
           <div key={message.key}>
-          	<h1>{message.value}</h1>
+          	<h1>{message.content}</h1>
           </div>
         )}
+
        </div>
 
       )

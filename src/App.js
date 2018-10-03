@@ -34,11 +34,18 @@ class App extends Component {
 }
 
   render() {
+    var messageList;
+		if (this.state.activeRoom) {
+		messageList = <MessageList activeRoom={this.state.activeRoom} firebase={firebase}/>;
+  } else {
+    messageList = null;
+  }
+
     return (
       <div className="chatroom">
-      	<RoomList firebase={firebase} />
-        <RoomList setActiveRoom={this.setActiveRoom} />
-        <MessageList firebase={firebase}/>
+      	<RoomList firebase={firebase}
+        setActiveRoom={room => this.setActiveRoom(room)} />
+        {messageList}
         <div>{(this.state.activeRoom==null?"Choose a room":this.state.activeRoom.name)}</div>
       </div>
     );
