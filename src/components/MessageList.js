@@ -9,11 +9,11 @@ class MessageList extends Component {
       newMessage: ''
     };
 
-    this.roomsRef = this.props.firebase.database().ref('Messages');
+    this.messagesRef = this.props.firebase.database().ref('Messages');
   }
 
   componentDidMount() {
-    this.roomsRef.on('child_added', snapshot => {
+    this.messagesRef.on('child_added', snapshot => {
       const message = snapshot.val();
       message.key = snapshot.key;
       this.setState({ messages: this.state.messages.concat( message ) })
@@ -23,6 +23,16 @@ class MessageList extends Component {
     this.props.activeRoom==null?"See Messages": message.filter(message.roomID == this.props.activeRoom.key).content
   }
 
+  handleChange(e) {
+     this.setState({ newMessage: e.target.value })
+   }
+
+  handleSubmit(e) {
+     e.preventDefault();
+     if (!this.state.newMessage) { return }
+     this.messagesRef.push({content: this.state.newMessage,roomID:this.props.activeRoom.key,sentAt:firebase.database.ServerValue.TIMESTAMP,username:this.props.user.displayName});
+   }
+
     render(){
       return(
         <div>
@@ -31,6 +41,11 @@ class MessageList extends Component {
           	<h1>{message.content}</h1>
           </div>
         )}
+
+        <form onSubmit={ (e) => this.handleSubmit(e) }>
+            <input type="text" value={ this.state.newMessage } onChange={ (e) => this.handleChange(e) } />
+            <input type="submit" />
+       </form>
 
        </div>
 

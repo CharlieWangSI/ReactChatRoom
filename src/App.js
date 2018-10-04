@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import RoomList from './components/RoomList'
 import MessageList from './components/MessageList'
+import User from './components/User'
 import * as firebase from 'firebase';
 
 
@@ -25,27 +26,41 @@ class App extends Component {
      super(props);
 
    this.state = {
-     activeRoom: null
+     activeRoom: null,
+     user: null
    };
+
+   }
+
+   setUser(user){
+     this.setState({user:user})
+
+   }
+
+   user(){
+     console(this.state.user.displayName)
    }
 
   setActiveRoom(room){
     this.setState({activeRoom:room})
 }
 
+
+
   render() {
-    var messageList;
-		if (this.state.activeRoom) {
-		messageList = <MessageList activeRoom={this.state.activeRoom} firebase={firebase}/>;
-  } else {
-    messageList = null;
-  }
+  //   var messageList;
+	// 	if (this.state.activeRoom) {
+	// 	messageList = <MessageList activeRoom={this.state.activeRoom} firebase={firebase}/>;
+  // } else {
+  //   messageList = null;
+  // }
 
     return (
       <div className="chatroom">
       	<RoomList firebase={firebase}
         setActiveRoom={room => this.setActiveRoom(room)} />
-        {messageList}
+        <MessageList firebase={firebase} />
+        <User firebase={firebase}/>
         <div>{(this.state.activeRoom==null?"Choose a room":this.state.activeRoom.name)}</div>
       </div>
     );
