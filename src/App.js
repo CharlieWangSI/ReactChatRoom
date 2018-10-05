@@ -61,7 +61,7 @@ class App extends Component {
         setActiveRoom={room => this.setActiveRoom(room)} />
         <MessageList firebase={firebase} />
         <User firebase={firebase}/>
-        <div>{(this.state.activeRoom==null?"Choose a room":this.state.activeRoom.name)}</div>
+        <div>{(this.state.activeRoom==null?"Choose a room":"You are in "+this.state.activeRoom.name)}</div>
       </div>
     );
   }

@@ -35,8 +35,13 @@ class MessageList extends Component {
 
     render(){
       return(
+
+
         <div>
-        (!this.props.activeRoom)?:{this.state.messages.filter(message => message.roomID == this.props.activeRoom.key).map(message =>
+        <h1>"here is the message"</h1>
+        {!this.props.activeRoom
+          ?null
+          :this.state.messages.filter(message => message.roomID == this.props.activeRoom.key).map(message =>
           <div key={message.key}>
           	<h1>{message.content}</h1>
           </div>
