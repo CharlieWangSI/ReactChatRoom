@@ -30,13 +30,13 @@ class MessageList extends Component {
   handleSubmit(e) {
      e.preventDefault();
      if (!this.state.newMessage) { return }
-     this.messagesRef.push({content: this.state.newMessage,roomID:this.props.activeRoom.key,sentAt:firebase.database.ServerValue.TIMESTAMP,username:this.props.user.displayName});
+     this.messagesRef.push({content: this.state.newMessage,roomID:this.props.activeRoom.key,sentAt:this.props.firebase.database.ServerValue.TIMESTAMP,username:this.props.user.displayName});
    }
 
     render(){
       return(
         <div>
-        {this.state.messages.filter(message => message.roomID == this.props.activeRoom.key).map( message =>
+        (!this.props.activeRoom)?:{this.state.messages.filter(message => message.roomID == this.props.activeRoom.key).map(message =>
           <div key={message.key}>
           	<h1>{message.content}</h1>
           </div>
