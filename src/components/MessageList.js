@@ -20,7 +20,8 @@ class MessageList extends Component {
     });}
 
   displayMessage(message){
-    this.props.activeRoom==null?"See Messages": message.filter(message.roomID == this.props.activeRoom.key).content
+    if(this.props.activeRoom===null){return "See Messages"}
+    return message.filter(message.roomID === this.props.activeRoom.key).content
   }
 
   handleChange(e) {
@@ -41,7 +42,7 @@ class MessageList extends Component {
         <h1>"here is the message"</h1>
         {!this.props.activeRoom
           ?null
-          :this.state.messages.filter(message => message.roomID == this.props.activeRoom.key).map(message =>
+          :this.state.messages.filter(message => message.roomID === this.props.activeRoom.key).map(message =>
           <div key={message.key}>
           	<h1>{message.content}</h1>
           </div>

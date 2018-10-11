@@ -11,6 +11,7 @@ class User extends Component {
 })
   }
 
+
   render(){
     const provider = new this.props.firebase.auth.GoogleAuthProvider();
     return(
