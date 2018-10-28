@@ -48,10 +48,12 @@ class App extends Component {
     return (
       <div className="chatroom">
       <RoomList firebase={firebase} setActiveRoom={room => this.setActiveRoom(room)} />
-      <MessageList firebase={firebase} />
+      <MessageList firebase={firebase} activeRoom={this.state.activeRoom} user={this.state.user} />
       <User firebase={firebase} setUser={user => this.setUser(user)}/>
       <div>
-      {(this.state.activeRoom==null?"Choose a room":"You are in "+this.state.activeRoom.name)}</div>
+        {(this.state.activeRoom==null?"Choose a room":"You are in "+this.state.activeRoom.name)}
+      </div>
+      <div>{this.state.user ? this.state.user.email : ''}</div>
       </div>
     );
   }

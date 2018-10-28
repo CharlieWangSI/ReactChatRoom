@@ -12,16 +12,18 @@ class User extends Component {
   }
 
   signIn() {
-    const provider = this.props.firebase.auth.GoogleAuthProvider();
-    this.props.firebase.auth().signInWithPopup(provider)
+    this.props.firebase.auth().signInWithPopup(new this.props.firebase.auth.GoogleAuthProvider());
+  }
+
+  signOut() {
+    this.props.firebase.auth().signOut();
   }
 
   render(){
     return(
       <div>
-        <input type="button" value="signIn" onChange={this.signIn}/>
-        <input type="button" value="signOut" onChange={this.props.firebase.auth().signOut}/>
-        <div>{this.props.user}</div>
+        <input type="button" value="signIn" onClick={this.signIn.bind(this)}/>
+        <input type="button" value="signOut" onClick={this.signOut.bind(this)}/>
       </div>
     )
   }
