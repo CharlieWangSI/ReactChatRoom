@@ -32,6 +32,7 @@ class RoomList extends Component {
      e.preventDefault();
      if (!this.state.newChatRoomName) { return }
      this.roomsRef.push({name: this.state.newChatRoomName});
+     this.setState({newChatRoomName:""});
    }
 
 

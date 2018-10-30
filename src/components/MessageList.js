@@ -34,12 +34,14 @@ class MessageList extends Component {
   handleSubmit(e) {
     e.preventDefault();
     if (!this.state.newMessage) { return }
+    if (!this.props.activeRoom) { return }
     this.messagesRef.push({
       content: this.state.newMessage,
       roomID: this.props.activeRoom.key,
       sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
       username: this.props.user.displayName
     });
+    this.setState({newMessage:""});
   }
 
   render(){
